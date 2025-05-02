@@ -1,18 +1,12 @@
 clc, clear close all
-m = 0.725;     % kg
-g = 9.82;     % m/s^2
-h = 0.042;    % m
-L = 0.225;    % m
-Ct = 0.1222;    % N*s^2/rad^2
-Ixx = 0.116E-3;  % kg*m^2
-Iyy = 0.0408E-3;  % kg*m^2
-Izz = 0.105E-3;  % kg*m^2
+% Quadcopter parameters, taken from Lecture 2, question 1
+% Jerome Jouffroy, February 2024
 
-omega_min = -100;
-omega_max = 0;
-zeta_min = -pi/2;
-zeta_max = pi/2;
+m = 4; % mass in kg
+g = 9.81; % gravity constant
 
-omega_pars = [omega_min, omega_max];
-zeta_pars = [zeta_min, zeta_max];
-params = [m, g, h L, Ct, Ixx, Iyy, Izz];
+% inertia matrix
+Ic = diag([ 2 ; 2 ; 4 ]);
+
+% rigid-body mass matrix
+M_RB = [ m*eye(3) , zeros(3) ; zeros(3) , Ic ];
